@@ -1,0 +1,10 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Description>Fable bindings for Node.js</Description>
+    <PackageProjectUrl>https://github.com/fable-compiler/fable-node</PackageProjectUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/fable-compiler/fable-node/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/fable-compiler/fable-node.git</RepositoryUrl>
+    <PackageTags>node;fsharp;fable</PackageTags>
+    <Authors>Joe Grund</Authors>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "fable build.fsx --run"
+  },
+  "dependencies": {
+    "fable-compiler-js": "^1.0.2",
+    "fable-publish-utils": "^1.0.5"
+  }
+}
