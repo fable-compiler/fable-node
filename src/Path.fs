@@ -39,6 +39,6 @@ type IExports =
     /// Provides the platform-specific path segment separator. "\" On Windows, "/" on POSIX
     abstract sep : string
     /// Provides access to Windows-specific implementations of the path methods.
-    abstract win32 : obj
+    abstract win32 : IExports
     /// Provides access to POSIX specific implementations of the path methods.
-    abstract posix : obj
+    abstract posix : IExports
