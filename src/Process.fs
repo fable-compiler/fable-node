@@ -8,7 +8,7 @@ open Node.Events
 open Node.Stream
 
 type [<AllowNullLiteral>] Process =
-      //inherit EventEmitter
+      inherit EventEmitter
       abstract stdout: Writable<string> with get, set
       abstract stderr: Writable<string> with get, set
       abstract stdin: Readable<string> with get, set
