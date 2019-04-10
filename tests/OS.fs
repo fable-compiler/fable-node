@@ -33,8 +33,8 @@ let tests : Test =
     (*
     testList "os.constants" [
       testCase "os.constants" <| fun _ ->
-        printfn "%s" (Os?constants )
-        testPassed // need to determine how it works
+        printfn "%O" (Os?Constants )
+        testPassed() // need to determine how it works
     ]
     *)
 
