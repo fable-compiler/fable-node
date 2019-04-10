@@ -95,8 +95,62 @@ let tests : Test =
 
     testList "os.networkInterfaces" [
       testCase "networkInterfaces" <| fun _ ->
-        printfn "%O" (Os.networkInterfaces())
+        let data = Os.networkInterfaces()
+        let keys = data |> Node.OS.NetworkInterfaceHelper.getInterfaceNames
+        keys 
+          |> Seq.iter( fun key -> 
+            let infos = Node.OS.NetworkInterfaceHelper.getInterfaceInfo data key
+            infos |> Seq.iter( fun info -> printfn "%s:%s" key info.address )            
+          ) 
         testPassed()
     ]    
 
+    testList "os.platform" [
+      testCase "platform" <| fun _ ->
+        let v = string (Os.platform())
+        printfn "%s" v
+        v.Length > 0  |> equal true
+    ]
+
+    testList "os.release" [
+      testCase "release" <| fun _ ->
+        let v = string (Os.release())
+        printfn "%s" v
+        v.Length > 0  |> equal true
+    ]
+
+    testList "os.tmpdir" [
+      testCase "tmpdir" <| fun _ ->
+        let v = string (Os.tmpdir())
+        printfn "%s" v
+        v.Length > 0  |> equal true
+    ]    
+
+    testList "os.totalmem" [
+      testCase "totalmem" <| fun _ ->
+        let v = string (Os.totalmem())
+        printfn "%s" v
+        Os.totalmem() <> 0  |> equal true
+    ]        
+
+    testList "os.type" [
+      testCase "type" <| fun _ ->
+        let v = string (Os.``type``())
+        printfn "%s" v
+        v.Length > 0  |> equal true
+    ]    
+
+    testList "os.uptime" [
+      testCase "uptime" <| fun _ ->
+        let v = string (Os.uptime())
+        printfn "%s" v
+        Os.uptime() <> 0  |> equal true
+    ]
+
+    testList "os.userInfo" [
+      testCase "userInfo" <| fun _ ->
+        let info = Os.userInfo()
+        printfn "%s" info.homedir
+        testPassed()
+    ]    
   ]

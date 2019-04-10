@@ -1,7 +1,12 @@
 namespace rec Node.OS
 
 open Fable.Core
+open Fable.Core.DynamicExtensions
 open Node.Base
+
+//TODO: check constants (https://nodejs.org/docs/latest/api/os.html#os_os_constants)
+//TODO: create enum for os.types() https://nodejs.org/docs/latest/api/os.html#os_os_type
+
 
 type [<AllowNullLiteral>] CpuTimes =
     abstract user: float
@@ -35,7 +40,16 @@ type [<AllowNullLiteral>] NetworkInterfaceInfo =
     abstract scopeid: float 
     // The assigned IPv4 or IPv6 address with the routing prefix in CIDR notation. If the netmask is invalid, this property is set to null
     abstract cidr: string 
-    
+
+type NetworkInterfaceData = obj
+
+module NetworkInterfaceHelper = 
+    let getInterfaceNames (o:NetworkInterfaceData) : string seq = 
+        upcast JS.Object.keys(o)
+
+    let getInterfaceInfo (o:NetworkInterfaceData) (name:string) : NetworkInterfaceInfo seq =
+        unbox o.[name]
+
 type [<AllowNullLiteral>] Constants =
     abstract UV_UDP_REUSEADDR: float
     abstract signals: unit -> obj
@@ -76,6 +90,8 @@ type IExports =
     abstract freemem: unit -> float
     // The os.getPriority() method returns the scheduling priority for the process specified by pid. If pid is not provided, or is 0, the priority of the current process is returned.
     abstract getPriority: ?pid: int -> int
+    // The os.setPriority() method attempts to set the scheduling priority for the process specified by pid. If pid is not provided, or is 0, the priority of the current process is used.
+    abstract setPriority: ?pid: int -> int
     /// The os.homedir() method returns the home directory of the current user as a string.
     abstract homedir: unit -> string
     /// The os.hostname() method returns the hostname of the operating system as a string.
@@ -86,7 +102,7 @@ type IExports =
     abstract loadavg: unit -> (float * float * float)
     /// The os.networkInterfaces() method returns an object containing only network interfaces that have been assigned a network address.
     /// Each key on the returned object identifies a network interface. The associated value is an array of objects that each describe an assigned network address.
-    abstract networkInterfaces: unit -> obj
+    abstract networkInterfaces: unit -> NetworkInterfaceData
     /// The os.platform() method returns a string identifying the operating system platform as set during compile time of Node.js.
     abstract platform: unit -> Platform
     /// The os.release() method returns a string identifying the operating system release.
@@ -95,12 +111,12 @@ type IExports =
     /// The os.tmpdir() method returns a string specifying the operating system's default directory for temporary files.
     abstract tmpdir: unit -> string
     /// The os.totalmem() method returns the total amount of system memory in bytes as an integer.
-    abstract totalmem: unit -> float
+    abstract totalmem: unit -> int
     /// The os.type() method returns a string identifying the operating system name as returned by uname(3). For example 'Linux' on Linux, 'Darwin' on macOS and 'Windows_NT' on Windows.
     /// Please see https://en.wikipedia.org/wiki/Uname#Examples for additional information about the output of running uname(3) on various operating systems.
     abstract ``type``: unit -> string
     /// The os.uptime() method returns the system uptime in number of seconds.
     /// Note: On Windows the returned value includes fractions of a second.
-    abstract uptime: unit -> float
+    abstract uptime: unit -> int
     /// The os.userInfo() method returns information about the currently effective user -- on POSIX platforms, this is typically a subset of the password file. The returned object includes the username, uid, gid, shell, and homedir. On Windows, the uid and gid fields are -1, and shell is null.
     abstract userInfo: ?options: UserInfoOptions -> UserInfo
