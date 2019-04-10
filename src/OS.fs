@@ -4,51 +4,67 @@ open Fable.Core
 open Node.Base
 
 type [<AllowNullLiteral>] CpuTimes =
-    abstract user: float with get, set
-    abstract nice: float with get, set
-    abstract sys: float with get, set
-    abstract idle: float with get, set
-    abstract irq: float with get, set
+    abstract user: float
+    abstract nice: float
+    abstract sys: float
+    abstract idle: float
+    abstract irq: float
 
 type [<AllowNullLiteral>] CpuInfo =
-    abstract model: string with get, set
-    abstract speed: float with get, set
-    abstract times: CpuTimes with get, set
+    abstract model: string 
+    abstract speed: float
+    abstract times: CpuTimes 
+
+[<StringEnum>]
+type NetworkFamily = 
+    | IPv4 
+    | IPv6 
 
 type [<AllowNullLiteral>] NetworkInterfaceInfo =
-    abstract address: string with get, set
-    abstract netmask: string with get, set
-    abstract family: string with get, set
-    abstract mac: string with get, set
-    abstract ``internal``: bool with get, set
-
+    //The assigned IPv4 or IPv6 address
+    abstract address: string 
+    // The IPv4 or IPv6 network mask
+    abstract netmask: string
+    //Either IPv4 or IPv6 
+    abstract family: NetworkFamily 
+    // The MAC address of the network interface
+    abstract mac: string 
+    // true if the network interface is a loopback or similar interface that is not remotely accessible; otherwise false
+    abstract ``internal``: unit -> bool
+    // The numeric IPv6 scope ID (only specified when family is IPv6)
+    abstract scopeid: float 
+    // The assigned IPv4 or IPv6 address with the routing prefix in CIDR notation. If the netmask is invalid, this property is set to null
+    abstract cidr: string 
+    
 type [<AllowNullLiteral>] Constants =
-    abstract UV_UDP_REUSEADDR: float with get, set
-    abstract signals: obj with get, set
-    abstract errno: obj with get, set
+    abstract UV_UDP_REUSEADDR: float
+    abstract signals: unit -> obj
+    abstract errno: unit -> obj
+    abstract priority: unit -> obj
+    abstract dlopen: unit -> obj
 
 type [<StringEnum>] Endianness =
     | [<CompiledName("BE")>] Be | [<CompiledName("LE")>] Le
 
 type [<AllowNullLiteral>] UserInfoOptions =
-    abstract encoding: string option with get, set
+    abstract encoding: string option 
 
 type [<AllowNullLiteral>] UserInfo =
-    abstract username: string with get, set
-    abstract uid: float with get, set
-    abstract gid: float with get, set
-    abstract shell: string with get, set
-    abstract homedir: string with get, set
+    abstract username: string 
+    abstract uid: float
+    abstract gid: float
+    abstract shell: string 
+    abstract homedir: string 
 
 type IExports =
     /// A string constant defining the operating system-specific end-of-line marker:
     /// - \n on POSIX
     /// - \r\n on Windows
-    abstract EOL: string with get, set
+    abstract EOL : string
     /// The os.arch() method returns a string identifying the operating system CPU architecture for which the Node.js binary was compiled.
     abstract arch: unit -> Arch
     /// Returns an object containing commonly used operating system specific constants for error codes, process signals, and so on.
-    abstract constants: Constants with get, set
+    abstract constants: Constants 
     /// The os.cpus() method returns an array of objects containing information about each CPU/core installed.
     abstract cpus: unit -> ResizeArray<CpuInfo>
     /// The os.endianness() method returns a string identifying the endianness of the CPU for which the Node.js binary was compiled.
@@ -58,6 +74,8 @@ type IExports =
     abstract endianness: unit -> Endianness
     /// The os.freemem() method returns the amount of free system memory in bytes as an integer.
     abstract freemem: unit -> float
+    // The os.getPriority() method returns the scheduling priority for the process specified by pid. If pid is not provided, or is 0, the priority of the current process is returned.
+    abstract getPriority: ?pid: int -> int
     /// The os.homedir() method returns the home directory of the current user as a string.
     abstract homedir: unit -> string
     /// The os.hostname() method returns the hostname of the operating system as a string.
