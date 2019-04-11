@@ -3,15 +3,17 @@ namespace rec Node.Url
 open Fable.Core
 open Node.Base
 
+// todo: check Static.format can't make it work. See commented sample in tests
+
 type IFormatOptions = 
-    abstract auth:string option 
-    abstract fragment:bool option
-    abstract search:bool option
-    abstract unicode:bool option
+    abstract auth:bool option with get, set
+    abstract fragment:bool option with get, set
+    abstract search:bool option with get, set
+    abstract unicode:bool option with get, set
 
 type [<AllowNullLiteral>] URLSearchParams = 
     [<Emit("new $0($1...)")>] 
-    abstract Create: input:U4<unit, string,obj, obj> -> URLSearchParams
+    abstract Create: input:U3<unit, string,URLSearchParams> -> URLSearchParams
     abstract append: string * string -> unit
     abstract delete: string -> unit
     abstract get: string -> string option
@@ -21,13 +23,14 @@ type [<AllowNullLiteral>] URLSearchParams =
     abstract set: name:string * value:string -> unit
     abstract sort: unit -> unit
     abstract toString: unit -> string 
-    abstract values: unit -> Iterator<string*string []>
-    abstract entries: unit -> Iterator<string*string []>
-    //abstract forEach: string * string -> obj
+    abstract values: unit -> string [] 
+    abstract entries: unit -> (string*string) []
 
-type [<AllowNullLiteral>] Url<'a> =
+type [<AllowNullLiteral>] URLType =
     [<Emit("new $0($1...)")>] 
-    abstract Create: input:string * b: U2<Url<string>, string> -> Url<string>
+    abstract Create: input:string * b: U2<URL, string> -> URL
+
+type [<AllowNullLiteral>] URL =
     abstract hash: string  with get, set
     abstract host: string  with get, set
     abstract hostname: string  with get, set
@@ -43,9 +46,10 @@ type [<AllowNullLiteral>] Url<'a> =
     abstract toString: unit -> string 
     abstract toJSON: unit -> string 
 
-//type IExports =
-    abstract domainToASCII: string -> string
-    abstract domainToUnicode: string -> string
-    abstract fileURLToPath: U2<Url<string>,string> -> string
-    abstract pathToFileURL: string -> Url<string>
-    abstract format: url: Url<string> * ?options: IFormatOptions -> string
+[<Import("*", "url")>]
+type Static = 
+    static member domainToASCII: string -> string = jsNative
+    static member domainToUnicode: string -> string = jsNative
+    static member fileURLToPath: U2<URL,string> -> string = jsNative
+    static member pathToFileURL: string -> URL = jsNative
+    static member format: URL * options : IFormatOptions -> string = jsNative

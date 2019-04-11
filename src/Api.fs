@@ -12,9 +12,7 @@ let [<Global>] require: NodeRequire = jsNative
 let [<Global>] ``module``: NodeModule = jsNative
 let [<Global>] exports: obj = jsNative
 let [<Global>] ``process``: Process.Process = jsNative
-let [<Global>] clearInterval: handle: float -> unit = jsNative
-let [<Global>] setImmediate: (unit -> unit) * [<ParamArray>] args: obj[] -> Immediate = jsNative
-let [<Global>] URL: Url.Url<string> = jsNative
+let [<Global>] URL: Url.URLType = jsNative
 let [<Global>] URLSearchParams: Url.URLSearchParams = jsNative
 
 
@@ -55,7 +53,7 @@ let querystring: Querystring.IExports = jsNative
 let stream: Stream.IExports = jsNative
 
 //[<Import("*", "url")>]
-//let url: Url.Url<string> = jsNative
+//let URL: Url.Url<string> = jsNative
 
 [<Import("*", "path")>]
 let path: Path.IExports = jsNative

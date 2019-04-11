@@ -335,3 +335,5 @@ ASALocalRun/
 .mfractor/
 
 yarn\.lock
+
+tests/test\.js
