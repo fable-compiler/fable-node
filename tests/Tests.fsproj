@@ -6,6 +6,7 @@
     <Compile Include="Util.fs" />
     <Compile Include="Path.fs" />
     <Compile Include="OS.fs" />
+    <Compile Include="Url.fs" />
     <Compile Include="Main.fs" />
   </ItemGroup>
   <ItemGroup>
