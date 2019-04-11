@@ -36,6 +36,8 @@ type [<AllowNullLiteral>] URLType =
     abstract Create: input:string * b: URL -> URL
     [<Emit("new $0($1...)")>] 
     abstract Create: input:string * b: string -> URL
+    [<Emit("new $0($1...)")>] 
+    abstract Create: input:string -> URL
 
 type [<AllowNullLiteral>] URL =
     abstract hash: string  with get, set
@@ -52,11 +54,11 @@ type [<AllowNullLiteral>] URL =
     abstract username: string with get, set
     abstract toString: unit -> string 
     abstract toJSON: unit -> string 
-
-module Static = 
-    let domainToASCII: string -> string = importMember "url"
-    let domainToUnicode: string -> string = importMember "url"
-    let fileURLToPath: string -> string = importMember "url"
-    let fileURLToPathFromURL: URL -> string = importMember "url"
-    let pathToFileURL: string -> URL = importMember "url"
-    //let format: string * options : IFormatOptions -> string =importMember "url"
+    
+    module Static = 
+        let domainToASCII: string -> string = importMember "url"
+        let domainToUnicode: string -> string = importMember "url"
+        let fileURLToPath: string -> string = importMember "url"
+        let fileURLToPathFromURL: URL -> string = importMember "url"
+        let pathToFileURL: string -> URL = importMember "url"
+        let format: URL * options : IFormatOptions -> string =importMember "url"

@@ -172,10 +172,9 @@ let tests : Test =
           else
             Node.Url.Static.fileURLToPath "file:///C:/path/" = """C:/path/""" |> equal true
 
-      
       (*
       testCase "format" <| fun _ ->
-//          let url : Node.Url.URL = URL.Create("https://a:b@測試?abc#foo")
+          let url : Node.Url.URL = URL.Create("https://a:b@測試?abc#foo")
           let formatOptions = jsOptions<Node.Url.IFormatOptions>( fun o -> 
             o.fragment <- Some false
             o.unicode <- Some true
@@ -188,10 +187,12 @@ let tests : Test =
               "unicode" ==> true
               "auth" ==> false
             ]
-          printfn "format: %s" (Node.Url.Static.format("https://a:b@測試?abc#foo",formatOptions))
-          Node.Url.Static.format("https://a:b@測試?abc#foo",!!test) = "https://測試/?abc" |> equal true
-//          Node.Url.Static.format(url,formatOptions) = "https://測試/?abc" |> equal true
-        *)
+            
+          printfn "format: %s" (Node.Url.Static.format(url,formatOptions))
+//          printfn "format: %s" (Node.Url.Static.format("https://a:b@測試?abc#foo",formatOptions))
+//          Node.Url.Static.format("https://a:b@測試?abc#foo",!!test) = "https://測試/?abc" |> equal true
+          Node.Url.Static.format(url,formatOptions) = "https://測試/?abc" |> equal true
+          *)
     ]
 
     testList "URLSearchParams" [
