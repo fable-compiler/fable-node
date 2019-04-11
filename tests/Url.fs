@@ -9,7 +9,7 @@ open Util
 
 let URL = Node.Api.URL
 
-let makeUrl input (b:string) :Node.Url.URL = URL.Create(input, !^b)
+let makeUrl input (b:string) :Node.Url.URL = URL.Create(input, b)
 
 let tests : Test = 
   testList "Url" [
@@ -243,7 +243,7 @@ let tests : Test =
 
       testCase "new" <| fun _ ->
           let url : Node.Url.URL = URL.Create("https://example.org/?a=b")          
-          let newSearchParams  : Node.Url.URLSearchParams = Node.Api.URLSearchParams.Create(!^url.searchParams)
+          let newSearchParams  : Node.Url.URLSearchParams = Node.Api.URLSearchParams.Create(url.searchParams)
           newSearchParams.append("a","c")
           (url.href = "https://example.org/?a=b" 
             && newSearchParams.toString() = "a=b&a=c") |> equal true  

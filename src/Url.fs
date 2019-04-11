@@ -13,7 +13,11 @@ type IFormatOptions =
 
 type [<AllowNullLiteral>] URLSearchParams = 
     [<Emit("new $0($1...)")>] 
-    abstract Create: input:U3<unit, string,URLSearchParams> -> URLSearchParams
+    abstract Create: input:string -> URLSearchParams
+    [<Emit("new $0($1...)")>] 
+    abstract Create: input:unit -> URLSearchParams
+    [<Emit("new $0($1...)")>] 
+    abstract Create: input:URLSearchParams -> URLSearchParams
     abstract append: string * string -> unit
     abstract delete: string -> unit
     abstract get: string -> string option
@@ -28,7 +32,9 @@ type [<AllowNullLiteral>] URLSearchParams =
 
 type [<AllowNullLiteral>] URLType =
     [<Emit("new $0($1...)")>] 
-    abstract Create: input:string * b: U2<URL, string> -> URL
+    abstract Create: input:string * b: URL -> URL
+    [<Emit("new $0($1...)")>] 
+    abstract Create: input:string * b: string -> URL
 
 type [<AllowNullLiteral>] URL =
     abstract hash: string  with get, set
