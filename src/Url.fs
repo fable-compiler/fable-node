@@ -6,6 +6,12 @@ open Fable.Core.JsInterop
 
 // todo: check Static.format can't make it work. See commented sample in tests
 
+type LegacyFormatOptions =
+    abstract member protocol : string with get, set
+    abstract member hostname : string with get, set
+    abstract member pathname : string with get, set
+    abstract member query : obj with get, set
+    
 type IFormatOptions = 
     abstract auth:bool option with get, set
     abstract fragment:bool option with get, set
@@ -32,12 +38,14 @@ type [<AllowNullLiteral>] URLSearchParams =
     abstract entries: unit -> (string*string) []
 
 type [<AllowNullLiteral>] URLType =
-    [<Emit("new $0($1...)")>] 
+    [<Emit("new URL($1...)")>] 
     abstract Create: input:string * b: URL -> URL
-    [<Emit("new $0($1...)")>] 
+    [<Emit("new URL($1...)")>] 
     abstract Create: input:string * b: string -> URL
-    [<Emit("new $0($1...)")>] 
+    [<Emit("new URL($1...)")>]
     abstract Create: input:string -> URL
+    abstract format: URL * options : IFormatOptions -> string 
+    abstract format: options : LegacyFormatOptions -> string 
 
 type [<AllowNullLiteral>] URL =
     abstract hash: string  with get, set
@@ -54,11 +62,10 @@ type [<AllowNullLiteral>] URL =
     abstract username: string with get, set
     abstract toString: unit -> string 
     abstract toJSON: unit -> string 
-    
-    module Static = 
-        let domainToASCII: string -> string = importMember "url"
-        let domainToUnicode: string -> string = importMember "url"
-        let fileURLToPath: string -> string = importMember "url"
-        let fileURLToPathFromURL: URL -> string = importMember "url"
-        let pathToFileURL: string -> URL = importMember "url"
-        let format: URL * options : IFormatOptions -> string =importMember "url"
+
+module Static = 
+    let domainToASCII: string -> string = importMember  "url"
+    let domainToUnicode: string -> string = importMember  "url"
+    let fileURLToPath: string -> string = importMember  "url"
+    let fileURLToPathFromURL: URL -> string = importMember  "url"
+    let pathToFileURL: string -> URL = importMember  "url"

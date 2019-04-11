@@ -172,7 +172,6 @@ let tests : Test =
           else
             Node.Url.Static.fileURLToPath "file:///C:/path/" = """C:/path/""" |> equal true
 
-      (*
       testCase "format" <| fun _ ->
           let url : Node.Url.URL = URL.Create("https://a:b@測試?abc#foo")
           let formatOptions = jsOptions<Node.Url.IFormatOptions>( fun o -> 
@@ -181,19 +180,24 @@ let tests : Test =
             o.auth <- Some false
             o.search <- Some true
           )
-          let test = 
-            createObj [
-              "fragment" ==> false
-              "unicode" ==> true
-              "auth" ==> false
-            ]
-            
-          printfn "format: %s" (Node.Url.Static.format(url,formatOptions))
-//          printfn "format: %s" (Node.Url.Static.format("https://a:b@測試?abc#foo",formatOptions))
-//          Node.Url.Static.format("https://a:b@測試?abc#foo",!!test) = "https://測試/?abc" |> equal true
-          Node.Url.Static.format(url,formatOptions) = "https://測試/?abc" |> equal true
-          *)
-    ]
+          printfn "format: %s" (URL.format(url,formatOptions))
+          URL.format(url,formatOptions) = "https://測試/?abc" |> equal true
+
+      testCase "format Legacy" <| fun _ ->
+          let url = Node.Api.URL
+          let legacyOptions =
+              jsOptions<Node.Url.LegacyFormatOptions>(fun o ->
+                  o.protocol <- "https"
+                  o.hostname <- "example.com"
+                  o.pathname <- "/some/path"
+                  o.query <- createObj [
+                      "page" ==> 1
+                      "format" ==> "json"
+                  ]
+              )
+          printfn "format: %s" (url.format(legacyOptions))
+          url.format(legacyOptions) = "https://example.com/some/path?page=1&format=json" |> equal true
+      ]
 
     testList "URLSearchParams" [
       testCase "get" <| fun _ ->
