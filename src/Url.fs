@@ -2,6 +2,7 @@ namespace rec Node.Url
 
 open Fable.Core
 open Node.Base
+open Fable.Core.JsInterop
 
 // todo: check Static.format can't make it work. See commented sample in tests
 
@@ -52,10 +53,10 @@ type [<AllowNullLiteral>] URL =
     abstract toString: unit -> string 
     abstract toJSON: unit -> string 
 
-[<Import("*", "url")>]
-type Static = 
-    static member domainToASCII: string -> string = jsNative
-    static member domainToUnicode: string -> string = jsNative
-    static member fileURLToPath: U2<URL,string> -> string = jsNative
-    static member pathToFileURL: string -> URL = jsNative
-    static member format: URL * options : IFormatOptions -> string = jsNative
+module Static = 
+    let domainToASCII: string -> string = importMember "url"
+    let domainToUnicode: string -> string = importMember "url"
+    let fileURLToPath: string -> string = importMember "url"
+    let fileURLToPathFromURL: URL -> string = importMember "url"
+    let pathToFileURL: string -> URL = importMember "url"
+    //let format: string * options : IFormatOptions -> string =importMember "url"
