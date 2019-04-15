@@ -2,4 +2,5 @@
 
 Fable bindings for [node.js native modules](https://nodejs.org/api/)
 
-- Publish: `npm run build Publish`
+- Tests: `npm tests` or `yarn tests`
+- Publish: `npm run build Publish` or `yarn build Publish`

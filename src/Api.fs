@@ -12,7 +12,7 @@ let [<Global>] require: NodeRequire = jsNative
 let [<Global>] ``module``: NodeModule = jsNative
 let [<Global>] exports: obj = jsNative
 let [<Global>] ``process``: Process.Process = jsNative
-//let [<Global>] URL: Url.URLType = jsNative
+let [<Global>] performance: Performance.Performance = jsNative
 let [<Global>] URLSearchParams: Url.URLSearchParams = jsNative
 
 
