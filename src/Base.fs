@@ -21,6 +21,13 @@ type [<AllowNullLiteral>] Error =
     abstract stack: string with get, set
     abstract message: string with get, set
 
+type ItNext<'T> = 
+    abstract ``done``: bool
+    abstract value:'T
+    
+type Iterator<'T> = 
+    abstract next : unit -> ItNext<'T>
+
 type [<AllowNullLiteral>] NodeRequireFunction =
     [<Emit("$0($1...)")>] abstract Invoke: id: string -> obj
 

@@ -335,3 +335,9 @@ ASALocalRun/
 .mfractor/
 
 yarn\.lock
+
+tests/test\.js
+
+build\.fsx\.lock
+
+package-lock\.json

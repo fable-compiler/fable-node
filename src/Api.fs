@@ -12,6 +12,9 @@ let [<Global>] require: NodeRequire = jsNative
 let [<Global>] ``module``: NodeModule = jsNative
 let [<Global>] exports: obj = jsNative
 let [<Global>] ``process``: Process.Process = jsNative
+let [<Global>] performance: Performance.Performance = jsNative
+let [<Global>] URLSearchParams: Url.URLSearchParams = jsNative
+
 
 [<Import("*", "buffer")>]
 let buffer: Buffer.IExports = jsNative
@@ -50,7 +53,7 @@ let querystring: Querystring.IExports = jsNative
 let stream: Stream.IExports = jsNative
 
 [<Import("*", "url")>]
-let url: Url.IExports = jsNative
+let URL: Url.URLType = jsNative
 
 [<Import("*", "path")>]
 let path: Path.IExports = jsNative
