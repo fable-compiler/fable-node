@@ -263,14 +263,14 @@ let tests : Test =
         buf.writeUInt16BE(0xdead,0) |> ignore 
         buf.writeUInt16LE(0xbeef,0) |> ignore 
         let buf = Buffer.allocUnsafe 4
-        buf.writeUInt32BE(0xfeedface,0) |> ignore 
-        buf.writeUInt32LE(0xfeedface,0) |> ignore 
+        buf.writeUInt32BE(float 0xfeedfaceLF,0) |> ignore 
+        buf.writeUInt32LE(float 0xfeedfaceLF,0) |> ignore 
         let buf = Buffer.allocUnsafe 6
-        //buf.writeUIntBE(0x1234567890ab, 0, 6) |> ignore
-        //buf.writeUIntLE(0x1234567890ab, 0, 6) |> ignore
-        //let buf = Buffer.allocUnsafe 6
-        //buf.writeIntBE((int64 0x1234567890ab,0,6) |> ignore 
-        //buf.writeIntLE(int64 0x1234567890ab,0,6) |> ignore 
+        buf.writeUIntBE(0x1234567890abLF, 0, 6) |> ignore
+        buf.writeUIntLE(0x1234567890abLF, 0, 6) |> ignore
+        let buf = Buffer.allocUnsafe 6
+        buf.writeIntBE(float 0x1234567890abLF,0,6) |> ignore 
+        buf.writeIntLE(float 0x1234567890abLF,0,6) |> ignore 
         testPassed()
 
       testCase "buffer.INSPECT_MAX_BYTES" <| fun _ -> 

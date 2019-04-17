@@ -81,24 +81,24 @@ type Buffer =
     abstract toString: ?encoding: BufferEncoding * ?start: int * ?``end``: int -> string
     abstract values: unit -> seq<int>
     abstract write: string: string * ?offset: int * ?length: int * ?encoding: BufferEncoding -> int
-    abstract writeIntLE: value: int64 * offset: int * byteLength: int * ?noAssert: bool -> int64
-    abstract writeIntBE: value: int64 * offset: int * byteLength: int * ?noAssert: bool -> int64
-    abstract writeUIntLE: value: int * offset: int * byteLength: int * ?noAssert: bool -> int
-    abstract writeUIntBE: value: int * offset: int * byteLength: int * ?noAssert: bool -> int
+    abstract writeIntLE: value: float * offset: int * byteLength: int * ?noAssert: bool -> float
+    abstract writeIntBE: value: float * offset: int * byteLength: int * ?noAssert: bool -> float
+    abstract writeUIntLE: value: float * offset: int * byteLength: int * ?noAssert: bool -> float
+    abstract writeUIntBE: value: float * offset: int * byteLength: int * ?noAssert: bool -> float
     abstract writeUInt8: value: int * offset: int * ?noAssert: bool -> int
     abstract writeUInt16LE: value: int * offset: int * ?noAssert: bool -> int
     abstract writeUInt16BE: value: int * offset: int * ?noAssert: bool -> int
-    abstract writeUInt32LE: value: int * offset: int * ?noAssert: bool -> int
-    abstract writeUInt32BE: value: int * offset: int * ?noAssert: bool -> int
+    abstract writeUInt32LE: value: float * offset: int * ?noAssert: bool -> float
+    abstract writeUInt32BE: value: float * offset: int * ?noAssert: bool -> float
     abstract writeInt8: value: int * offset: int * ?noAssert: bool -> int
     abstract writeInt16LE: value: int * offset: int * ?noAssert: bool -> int
     abstract writeInt16BE: value: int * offset: int * ?noAssert: bool -> int
     abstract writeInt32LE: value: int * offset: int * ?noAssert: bool -> int
     abstract writeInt32BE: value: int * offset: int * ?noAssert: bool -> int
-    abstract writeFloatLE: value: float * offset: int * ?noAssert: bool -> int
-    abstract writeFloatBE: value: float * offset: int * ?noAssert: bool -> int
-    abstract writeDoubleLE: value: float * offset: int * ?noAssert: bool -> int
-    abstract writeDoubleBE: value: float * offset: int * ?noAssert: bool -> int
+    abstract writeFloatLE: value: float * offset: int * ?noAssert: bool -> float
+    abstract writeFloatBE: value: float * offset: int * ?noAssert: bool -> float
+    abstract writeDoubleLE: value: float * offset: int * ?noAssert: bool -> float
+    abstract writeDoubleBE: value: float * offset: int * ?noAssert: bool -> float
     abstract INSPECT_MAX_BYTES: int with get
     abstract kMaxLength:int with get 
 
