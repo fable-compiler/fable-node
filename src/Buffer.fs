@@ -2,6 +2,18 @@ namespace rec Node.Buffer
 
 open Fable.Core
 open Fable.Core.JS
+open System
+
+(*
+byte[] > UInt8Array
+sbyte[] > Int8Array
+ushort[] > UInt16Array
+short[] > Int16Array
+uint[] > UInt32Array
+int[] > Int32Array
+float32[] > Float32Array
+float64[] > Float64Array
+*)
 
 [<StringEnum>]
 type BufferEncoding =
@@ -23,96 +35,130 @@ type BufferEncoding =
     | Hex
 
 type Buffer =
-    abstract write: string: string * ?offset: float * ?length: float * ?encoding: string -> float
-    abstract toString: ?encoding: string * ?start: float * ?``end``: float -> string
-    abstract toJSON: unit -> obj
+    abstract buffer: ArrayBuffer with get
+    abstract byteOffset: int with get
+    abstract compare: otherBuffer: Buffer * ?targetStart: int * ?targetEnd: int * ?sourceStart: int * ?sourceEnd: int -> int
+    abstract copy: targetBuffer: Buffer * ?targetStart: int * ?sourceStart: int * ?sourceEnd: int -> int
+    abstract entries: unit -> seq<int * int>
     abstract equals: otherBuffer: Buffer -> bool
-    abstract compare: otherBuffer: Buffer * ?targetStart: float * ?targetEnd: float * ?sourceStart: float * ?sourceEnd: float -> float
-    abstract copy: targetBuffer: Buffer * ?targetStart: float * ?sourceStart: float * ?sourceEnd: float -> float
-    abstract slice: ?start: float * ?``end``: float -> Buffer
-    abstract writeUIntLE: value: float * offset: float * byteLength: float * ?noAssert: bool -> float
-    abstract writeUIntBE: value: float * offset: float * byteLength: float * ?noAssert: bool -> float
-    abstract writeIntLE: value: float * offset: float * byteLength: float * ?noAssert: bool -> float
-    abstract writeIntBE: value: float * offset: float * byteLength: float * ?noAssert: bool -> float
-    abstract readUIntLE: offset: float * byteLength: float * ?noAssert: bool -> float
-    abstract readUIntBE: offset: float * byteLength: float * ?noAssert: bool -> float
-    abstract readIntLE: offset: float * byteLength: float * ?noAssert: bool -> float
-    abstract readIntBE: offset: float * byteLength: float * ?noAssert: bool -> float
-    abstract readUInt8: offset: float * ?noAssert: bool -> float
-    abstract readUInt16LE: offset: float * ?noAssert: bool -> float
-    abstract readUInt16BE: offset: float * ?noAssert: bool -> float
-    abstract readUInt32LE: offset: float * ?noAssert: bool -> float
-    abstract readUInt32BE: offset: float * ?noAssert: bool -> float
-    abstract readInt8: offset: float * ?noAssert: bool -> float
-    abstract readInt16LE: offset: float * ?noAssert: bool -> float
-    abstract readInt16BE: offset: float * ?noAssert: bool -> float
-    abstract readInt32LE: offset: float * ?noAssert: bool -> float
-    abstract readInt32BE: offset: float * ?noAssert: bool -> float
-    abstract readFloatLE: offset: float * ?noAssert: bool -> float
-    abstract readFloatBE: offset: float * ?noAssert: bool -> float
-    abstract readDoubleLE: offset: float * ?noAssert: bool -> float
-    abstract readDoubleBE: offset: float * ?noAssert: bool -> float
+    abstract fill: value: string * ?offset: int * ?``end``: int * ?encoding: BufferEncoding-> Buffer
+    abstract fill: value: Buffer * ?offset: int * ?``end``: int * ?encoding: BufferEncoding-> Buffer
+    abstract fill: value: int * ?offset: int * ?``end``: int * ?encoding: BufferEncoding-> Buffer
+    abstract includes: value: string * ?byteOffset: int * ?encoding: BufferEncoding -> bool
+    abstract includes: value: Buffer * ?byteOffset: int * ?encoding: BufferEncoding -> bool
+    abstract includes: value: int * ?byteOffset: int * ?encoding: BufferEncoding -> bool
+    abstract indexOf: value: int * ?byteOffset: int * ?encoding: BufferEncoding -> int
+    abstract indexOf: value: string * ?byteOffset: int * ?encoding: BufferEncoding -> int
+    abstract indexOf: value: Buffer * ?byteOffset: int * ?encoding: BufferEncoding -> int
+    abstract keys: unit -> seq<int>
+    abstract lastIndexOf: value: int * ?byteOffset: int * ?encoding: BufferEncoding -> int
+    abstract lastIndexOf: value: string * ?byteOffset: int * ?encoding: BufferEncoding -> int
+    abstract lastIndexOf: value: Buffer * ?byteOffset: int * ?encoding: BufferEncoding -> int
+    abstract length: int with get
+    abstract readDoubleLE: offset: int * ?noAssert: bool -> float
+    abstract readDoubleBE: offset: int * ?noAssert: bool -> float
+    abstract readFloatLE: offset: int * ?noAssert: bool -> float
+    abstract readFloatBE: offset: int * ?noAssert: bool -> float
+    abstract readInt8: offset: int * ?noAssert: bool -> int
+    abstract readInt16LE: offset: int * ?noAssert: bool -> int
+    abstract readInt16BE: offset: int * ?noAssert: bool -> int
+    abstract readInt32LE: offset: int * ?noAssert: bool -> int32
+    abstract readInt32BE: offset: int * ?noAssert: bool -> int32
+    abstract readUInt8: offset: int * ?noAssert: bool -> int
+    abstract readUInt16LE: offset: int * ?noAssert: bool -> int
+    abstract readUInt16BE: offset: int * ?noAssert: bool -> int
+    abstract readUInt32LE: offset: int * ?noAssert: bool -> int
+    abstract readUInt32BE: offset: int * ?noAssert: bool -> int
+    abstract readUIntLE: offset: int * byteLength: int * ?noAssert: bool -> int
+    abstract readUIntBE: offset: int * byteLength: int * ?noAssert: bool -> int
+    abstract readIntLE: offset: int * byteLength: int * ?noAssert: bool -> int
+    abstract readIntBE: offset: int * byteLength: int * ?noAssert: bool -> int
+    abstract slice: ?start: int * ?``end``: int -> Buffer
     abstract swap16: unit -> Buffer
     abstract swap32: unit -> Buffer
     abstract swap64: unit -> Buffer
-    abstract writeUInt8: value: float * offset: float * ?noAssert: bool -> float
-    abstract writeUInt16LE: value: float * offset: float * ?noAssert: bool -> float
-    abstract writeUInt16BE: value: float * offset: float * ?noAssert: bool -> float
-    abstract writeUInt32LE: value: float * offset: float * ?noAssert: bool -> float
-    abstract writeUInt32BE: value: float * offset: float * ?noAssert: bool -> float
-    abstract writeInt8: value: float * offset: float * ?noAssert: bool -> float
-    abstract writeInt16LE: value: float * offset: float * ?noAssert: bool -> float
-    abstract writeInt16BE: value: float * offset: float * ?noAssert: bool -> float
-    abstract writeInt32LE: value: float * offset: float * ?noAssert: bool -> float
-    abstract writeInt32BE: value: float * offset: float * ?noAssert: bool -> float
-    abstract writeFloatLE: value: float * offset: float * ?noAssert: bool -> float
-    abstract writeFloatBE: value: float * offset: float * ?noAssert: bool -> float
-    abstract writeDoubleLE: value: float * offset: float * ?noAssert: bool -> float
-    abstract writeDoubleBE: value: float * offset: float * ?noAssert: bool -> float
-    abstract fill: value: obj * ?offset: float * ?``end``: float -> obj
-    abstract indexOf: value: U3<string, float, Buffer> * ?byteOffset: float * ?encoding: string -> float
-    abstract lastIndexOf: value: U3<string, float, Buffer> * ?byteOffset: float * ?encoding: string -> float
-    abstract entries: unit -> seq<float * float>
-    abstract includes: value: U3<string, float, Buffer> * ?byteOffset: float * ?encoding: string -> bool
-    abstract keys: unit -> seq<float>
-    abstract values: unit -> seq<float>
-    abstract from: array: ResizeArray<obj> -> Buffer
-    abstract from: arrayBuffer: ArrayBuffer * ?byteOffset: float * ?length: float -> Buffer
-    abstract from: buffer: Buffer -> Buffer
-    abstract from: str: string * ?encoding: string -> Buffer
-    abstract isBuffer: obj: obj -> obj
-    abstract isEncoding: encoding: string -> bool
-    abstract byteLength: string: string * ?encoding: string -> float
-    abstract compare: buf1: Buffer * buf2: Buffer -> float
-    abstract alloc: size: float * ?fill: U3<string, Buffer, float> * ?encoding: string -> Buffer
-    abstract allocUnsafe: size: float -> Buffer
-    abstract allocUnsafeSlow: size: float -> Buffer
+    abstract toJSON: unit -> obj
+    abstract toString: ?encoding: BufferEncoding * ?start: int * ?``end``: int -> string
+    abstract values: unit -> seq<int>
+    abstract write: string: string * ?offset: int * ?length: int * ?encoding: BufferEncoding -> int
+    abstract writeIntLE: value: int64 * offset: int * byteLength: int * ?noAssert: bool -> int64
+    abstract writeIntBE: value: int64 * offset: int * byteLength: int * ?noAssert: bool -> int64
+    abstract writeUIntLE: value: int * offset: int * byteLength: int * ?noAssert: bool -> int
+    abstract writeUIntBE: value: int * offset: int * byteLength: int * ?noAssert: bool -> int
+    abstract writeUInt8: value: int * offset: int * ?noAssert: bool -> int
+    abstract writeUInt16LE: value: int * offset: int * ?noAssert: bool -> int
+    abstract writeUInt16BE: value: int * offset: int * ?noAssert: bool -> int
+    abstract writeUInt32LE: value: int * offset: int * ?noAssert: bool -> int
+    abstract writeUInt32BE: value: int * offset: int * ?noAssert: bool -> int
+    abstract writeInt8: value: int * offset: int * ?noAssert: bool -> int
+    abstract writeInt16LE: value: int * offset: int * ?noAssert: bool -> int
+    abstract writeInt16BE: value: int * offset: int * ?noAssert: bool -> int
+    abstract writeInt32LE: value: int * offset: int * ?noAssert: bool -> int
+    abstract writeInt32BE: value: int * offset: int * ?noAssert: bool -> int
+    abstract writeFloatLE: value: float * offset: int * ?noAssert: bool -> int
+    abstract writeFloatBE: value: float * offset: int * ?noAssert: bool -> int
+    abstract writeDoubleLE: value: float * offset: int * ?noAssert: bool -> int
+    abstract writeDoubleBE: value: float * offset: int * ?noAssert: bool -> int
+    abstract INSPECT_MAX_BYTES: int with get
+    abstract kMaxLength:int with get 
 
 type [<AllowNullLiteral>] BufferStatic =
-    [<Emit("new $0($1...)")>] abstract Create: str: string * ?encoding: string -> Buffer
-    [<Emit("new $0($1...)")>] abstract Create: str: float -> Buffer
-    [<Emit("new $0($1...)")>] abstract Create: array: byte[] -> Buffer
-    [<Emit("new $0($1...)")>] abstract Create: arrayBuffer: ArrayBuffer -> Buffer
-    [<Emit("new $0($1...)")>] abstract Create: array: ResizeArray<obj> -> Buffer
-    [<Emit("new $0($1...)")>] abstract Create: buffer: Buffer -> Buffer
-    abstract from: array: ResizeArray<obj> -> Buffer
+    abstract alloc: size: int * ?fill: string * ?encoding: BufferEncoding -> Buffer
+    abstract alloc: size: int * ?fill: Buffer * ?encoding: BufferEncoding -> Buffer
+    abstract alloc: size: int * ?fill: int array * ?encoding: BufferEncoding -> Buffer
+    abstract alloc: size: int * ?fill: int * ?encoding: BufferEncoding -> Buffer
+    abstract alloc: size: int -> Buffer
+    abstract allocUnsafe: size: int -> Buffer
+    abstract allocUnsafeSlow: size: int -> Buffer
+    abstract byteLength: string: string * ?encoding: BufferEncoding -> int
+    abstract byteLength: string: Buffer * ?encoding: BufferEncoding -> int
+    abstract byteLength: string: DataView * ?encoding: BufferEncoding -> int
+    abstract byteLength: string: ArrayBuffer * ?encoding: BufferEncoding -> int
+    abstract byteLength: string: obj array * ?encoding: BufferEncoding -> int
+    abstract compare: buf1: Buffer * buf2: Buffer -> int
+    abstract compare: buf1: byte [] * buf2: byte [] -> int
+    abstract concat: list: Buffer [] * ?totalLength: int -> Buffer
+    abstract concat: list: byte [] [] * ?totalLength: int -> Buffer
+    abstract from: array: int [] -> Buffer
+    abstract from: arrayBuffer: ArrayBuffer * ?byteOffset: int * ?length: int -> Buffer
+    abstract from: object: obj * ?byteOffset: int * ?length: int -> Buffer
+    abstract from: object: obj * ?byteOffset: string * ?length: int -> Buffer
     abstract from: buffer: Buffer -> Buffer
-    abstract from: arrayBuffer: ArrayBuffer * ?byteOffset: float * ?length: float -> Buffer
-    abstract from: str: string * ?encoding: string -> Buffer
-    abstract concat: list: Buffer [] * ?totalLength: float -> Buffer
+    abstract from: buffer: byte [] -> Buffer
+    abstract from: str: string * ?encoding: BufferEncoding -> Buffer
+    abstract isBuffer: obj: obj -> bool
+    abstract isEncoding: encoding: BufferEncoding -> bool
+    abstract poolSize : int with get
 
+    [<Obsolete("Check https://nodejs.org/docs/latest/api/buffer.html#buffer_class_buffer")>][<Emit("new $0($1...)")>] abstract Create: arrayBuffer: ArrayBuffer -> Buffer
+    [<Obsolete("Check https://nodejs.org/docs/latest/api/buffer.html#buffer_class_buffer.")>] [<Emit("new $0($1...)")>] abstract Create: str: string * ?encoding: BufferEncoding -> Buffer
+    [<Obsolete("Check https://nodejs.org/docs/latest/api/buffer.html#buffer_class_buffer.")>] [<Emit("new $0($1...)")>] abstract Create: str: int -> Buffer
+    [<Obsolete("Check https://nodejs.org/docs/latest/api/buffer.html#buffer_class_buffer.")>] [<Emit("new $0($1...)")>] abstract Create: array: byte[] -> Buffer
+    [<Obsolete("Check https://nodejs.org/docs/latest/api/buffer.html#buffer_class_buffer.")>] [<Emit("new $0($1...)")>] abstract Create: array: ResizeArray<obj> -> Buffer
+    [<Obsolete("Check https://nodejs.org/docs/latest/api/buffer.html#buffer_class_buffer.")>] [<Emit("new $0($1...)")>] abstract Create: buffer: Buffer -> Buffer
+
+[<Obsolete("Check https://nodejs.org/docs/latest/api/buffer.html#buffer_class_buffer.")>]
 type [<AllowNullLiteral>] SlowBuffer =
     abstract prototype: Buffer with get, set
     abstract isBuffer: obj: obj -> bool
-    abstract byteLength: string: string * ?encoding: string -> float
-    abstract concat: list: ResizeArray<Buffer> * ?totalLength: float -> Buffer
+    abstract byteLength: string: string * ?encoding: BufferEncoding -> int
+    abstract concat: list: ResizeArray<Buffer> * ?totalLength: int -> Buffer
 
+[<Obsolete("Check https://nodejs.org/docs/latest/api/buffer.html#buffer_class_buffer.")>]
 type [<AllowNullLiteral>] SlowBufferStatic =
-    [<Emit("new $0($1...)")>] abstract Create: str: string * ?encoding: string -> Buffer
-    [<Emit("new $0($1...)")>] abstract Create: str: float -> Buffer
+    [<Emit("new $0($1...)")>] abstract Create: str: string * ?encoding: BufferEncoding -> Buffer
+    [<Emit("new $0($1...)")>] abstract Create: str: int -> Buffer
     [<Emit("new $0($1...)")>] abstract Create: array: byte[] -> Buffer
     [<Emit("new $0($1...)")>] abstract Create: array: ResizeArray<obj> -> Buffer
 
+type BufferConstants = 
+    abstract MAX_LENGTH: int with get
+    abstract MAX_STRING_LENGTH: int with get
+
 type IExports =
     abstract Buffer: BufferStatic with get, set
+
+    [<Obsolete("Check https://nodejs.org/docs/latest/api/buffer.html#buffer_class_buffer.")>]
     abstract SlowBuffer: SlowBufferStatic with get, set
+    abstract constants: BufferConstants with get
+    abstract transcode: source:Buffer  * fromEnc:BufferEncoding * toEnc:BufferEncoding -> Buffer
