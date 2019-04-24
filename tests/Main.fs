@@ -10,6 +10,7 @@ let run () =
                     Url.tests
                     OS.tests
                     Path.tests
+                    Buffer.tests
                 ] :> Util.Test seq
 
     for (moduleName, moduleTests) in tests do

@@ -15,6 +15,7 @@ let [<Global>] ``process``: Process.Process = jsNative
 let [<Global>] performance: Performance.Performance = jsNative
 let [<Global>] URLSearchParams: Url.URLSearchParams = jsNative
 
+//let console => USE JS.console from Fable.Core instead
 
 [<Import("*", "buffer")>]
 let buffer: Buffer.IExports = jsNative
