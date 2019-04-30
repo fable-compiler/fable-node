@@ -4,9 +4,7 @@ open Fable.Core
 open Fable.Core.DynamicExtensions
 open Node.Base
 
-//TODO: check constants. can't make it work. Always undefined. (https://nodejs.org/docs/latest/api/os.html#os_os_constants)
 //TODO: create enum for os.types() https://nodejs.org/docs/latest/api/os.html#os_os_type
-
 
 type [<AllowNullLiteral>] CpuTimes =
     abstract user: float

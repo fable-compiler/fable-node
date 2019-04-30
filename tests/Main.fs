@@ -11,6 +11,7 @@ let run () =
                     OS.tests
                     Path.tests
                     Buffer.tests
+                    Performance.tests
                 ] :> Util.Test seq
 
     for (moduleName, moduleTests) in tests do
