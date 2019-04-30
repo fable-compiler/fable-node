@@ -1,7 +1,9 @@
 [<AutoOpen>]
 module Node.Api
 
+open System
 open Fable.Core
+open Fable.Core.JS
 open Node
 open Node.Base
 
@@ -12,10 +14,11 @@ let [<Global>] require: NodeRequire = jsNative
 let [<Global>] ``module``: NodeModule = jsNative
 let [<Global>] exports: obj = jsNative
 let [<Global>] ``process``: Process.Process = jsNative
-let [<Global>] performance: Performance.Performance = jsNative
+//let [<Global>] performance: Performance.Performance = jsNative
 let [<Global>] URLSearchParams: Url.URLSearchParams = jsNative
 
-//let console => USE JS.console from Fable.Core instead
+[<Obsolete("USE JS.console from Fable.Core instead")>]
+let console : unit = jsNative 
 
 [<Import("*", "buffer")>]
 let buffer: Buffer.IExports = jsNative
@@ -46,6 +49,12 @@ let https: Https.IExports = jsNative
 
 [<Import("*", "os")>]
 let os: OS.IExports = jsNative
+
+[<Import("performance", "perf_hooks")>]
+let performance: Performance.Performance = jsNative
+
+[<Import("PerformanceObserver", "perf_hooks")>]
+let PerformanceObserver: Performance.PerformanceObserver = jsNative
 
 [<Import("*", "querystring")>]
 let querystring: Querystring.IExports = jsNative
