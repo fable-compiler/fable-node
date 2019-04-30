@@ -28,15 +28,12 @@ Actually here's the actual progresses made on the updates:
 - [ ] Cluster
 - [ ] Crypto
 - [ ] DNS
-- [ ] Domain
-- [ ] Errors
 - [ ] Events
 - [ ] File System
 - [ ] HTTP
 - [ ] HTTP/2
 - [ ] HTTPS
 - [ ] Inspector
-- [ ] Internationalization
 - [ ] Net
 - [ ] Process
 - [ ] Query Strings
@@ -54,5 +51,5 @@ Actually here's the actual progresses made on the updates:
 - [ ] Utilities
 - [ ] V8
 - [ ] VM
-- [ ] Worker Threads
+- [ ] Worker Threads 
 - [ ] Zlib
