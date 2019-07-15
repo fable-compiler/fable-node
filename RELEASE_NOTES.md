@@ -1,3 +1,8 @@
+### 1.0.1
+
+* added Cluster
+* added Trace Events
+
 ### 1.0.0
 
 * Let's start our lib update!

@@ -19,35 +19,36 @@ Actually here's the actual progresses made on the updates:
 - [x] Path *(from 1.0.0-beta-0.0.1)*
 - [x] Url *(from 1.0.0-beta-0.0.1)*
 - [x] Performance Hooks *(from v1.0.0)*
+- [x] Cluster *(from v1.0.1)*
+- [x] Trace Events *(from v1.0.1)*
 
 ## Not yet updated
 
-*No check can either mean it doesn't exist or it hasn't been updated yet.*
+*No check can either mean it doesn't exist*
 
-- [ ] Child Processes
-- [ ] Cluster
+- [X] Child Processes
 - [ ] Crypto
 - [ ] DNS
 - [ ] Events
 - [ ] File System
-- [ ] HTTP
+- [X] HTTP
 - [ ] HTTP/2
-- [ ] HTTPS
+- [X] HTTPS
 - [ ] Inspector
 - [ ] Net
-- [ ] Process
-- [ ] Query Strings
+- [X] Process
+- [X] Query Strings
 - [ ] Readline
 - [ ] REPL
 - [ ] Report
-- [ ] Stream
+- [X] Stream
 - [ ] String Decoder
 - [ ] Timers
-- [ ] TLS/SSL
-- [ ] Trace Events
+- [X] TLS/SSL
+- [X] Trace Events
 - [ ] TTY
 - [ ] UDP/Datagram
-- [ ] URL
+- [X] URL
 - [ ] Utilities
 - [ ] V8
 - [ ] VM

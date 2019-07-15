@@ -26,6 +26,9 @@ let buffer: Buffer.IExports = jsNative
 [<Import("*", "child_process")>]
 let childProcess: ChildProcess.IExports = jsNative
 
+[<ImportDefault("cluster")>] // avoid problems with babel
+let cluster: Cluster.IExports = jsNative
+
 [<Import("*", "events")>]
 let events: Events.IExports = jsNative
 
