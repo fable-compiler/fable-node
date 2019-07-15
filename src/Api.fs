@@ -65,5 +65,11 @@ let stream: Stream.IExports = jsNative
 [<Import("*", "url")>]
 let URL: Url.URLType = jsNative
 
+[<Import("*", "trace_events")>]
+let TraceEVents: TraceEvents.IExports = jsNative
+
+//[<Import("*", "util")>]
+//let Util: Util.IExports = jsNative
+
 [<Import("*", "path")>]
 let path: Path.IExports = jsNative

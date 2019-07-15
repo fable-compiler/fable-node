@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="Base.fs" />
     <Compile Include="Url.fs" />
+    <Compile Include="Util.fs" />
     <Compile Include="Querystring.fs" />
     <Compile Include="Events.fs" />
     <Compile Include="Buffer.fs" />
@@ -25,6 +26,7 @@
     <Compile Include="OS.fs" />
     <Compile Include="Process.fs" />
     <Compile Include="Performance.fs" />
+    <Compile Include="TraceEvents.fs" />
     <Compile Include="Api.fs" />
   </ItemGroup>
   <ItemGroup>
