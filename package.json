@@ -2,16 +2,16 @@
   "private": true,
   "scripts": {
     "build": "fable build.fsx --run",
-    "pretest": "fable-splitter tests -o build/tests --commonjs",
+    "pretest": "fable tests/Tests.fsproj build/tests --commonjs",
     "sample-cluster": "fable-splitter samples/cluster -o build/cluster --commonjs --run --w",
     "test": "mocha build/tests -t 10000"
   },
   "dependencies": {
     "@babel/preset-env": "^7.5.4",
     "fable-compiler": "^2.2.0-beta-015",
-    "fable-compiler-js": "^1.0.2",
+    "fable-compiler-js": "^1.0.4",
     "fable-publish-utils": "^1.0.5",
     "fable-splitter": "^2.1.5",
-    "mocha": "^6.0.2"
+    "mocha": "^6.2.0"
   }
 }

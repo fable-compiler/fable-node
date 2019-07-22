@@ -87,7 +87,7 @@ let tests : Test =
       testCase "set" <| fun _ ->
           let url : Node.Url.URL = URL.Create("https://abc:xyz@example.com")
           url.password <- "123" 
-          url.href = "https://abc:123@example.com/" |> equal true  
+          url.href = "https://abc:123@example.com/" |> equal true
     ]
 
     testList "pathname" [
@@ -98,7 +98,7 @@ let tests : Test =
       testCase "set" <| fun _ ->
           let url : Node.Url.URL = URL.Create("https://example.org/abc/xyz?123")
           url.pathname <- "/abcdef" 
-          url.href = "https://example.org/abcdef?123" |> equal true  
+          url.href = "https://example.org/abcdef?123" |> equal true
     ]
 
     testList "port" [
@@ -109,23 +109,23 @@ let tests : Test =
       testCase "443" <| fun _ ->
           let url : Node.Url.URL = URL.Create("https://example.org:8888")
           url.port <- "443"
-          (url.port = "" && url.href = "https://example.org/") |> equal true  
+          (url.port = "" && url.href = "https://example.org/") |> equal true
 
       testCase "1234" <| fun _ ->
           let url : Node.Url.URL = URL.Create("https://example.org:8888")
           url.port <- "1234"
-          (url.port = "1234" && url.href = "https://example.org:1234/") |> equal true  
+          (url.port = "1234" && url.href = "https://example.org:1234/") |> equal true
 
       testCase "abcd" <| fun _ ->
           let url : Node.Url.URL = URL.Create("https://example.org:8888")
           url.port <- "1234"
           url.port <- "abcd"
-          (url.port = "1234" && url.href = "https://example.org:1234/") |> equal true  
+          (url.port = "1234" && url.href = "https://example.org:1234/") |> equal true
 
       testCase "abcd" <| fun _ ->
           let url : Node.Url.URL = URL.Create("https://example.org:8888")
           url.port <- "1234.5678"
-          (url.port = "1234" && url.href = "https://example.org:1234/") |> equal true  
+          (url.port = "1234" && url.href = "https://example.org:1234/") |> equal true
     ]
 
     testList "protocol" [
@@ -136,7 +136,7 @@ let tests : Test =
       testCase "set" <| fun _ ->
           let url : Node.Url.URL = URL.Create("https://example.org")
           url.protocol <- "ftp"
-          url.href = "ftp://example.org/" |> equal true  
+          url.href = "ftp://example.org/" |> equal true
     ]
 
     testList "search" [
@@ -148,7 +148,7 @@ let tests : Test =
           let url : Node.Url.URL = URL.Create("https://example.org/abc?123")
           url.search = "?123" |> equal true
           url.search <- "abc=xyz"
-          url.href = "https://example.org/abc?abc=xyz" |> equal true  
+          url.href = "https://example.org/abc?abc=xyz" |> equal true
     ]
 
     testList "username" [
@@ -159,18 +159,18 @@ let tests : Test =
       testCase "set" <| fun _ ->
           let url : Node.Url.URL = URL.Create("https://abc:xyz@example.com")
           url.username <- "123" 
-          url.href = "https://123:xyz@example.com/" |> equal true  
+          url.href = "https://123:xyz@example.com/" |> equal true
     ]
 
     testList "static" [
       testCase "domainToUnicode" <| fun _ ->
-          Node.Url.Static.domainToUnicode "xn--espaol-zwa.com" = "español.com" |> equal true
+          Node.Url.Static.domainToUnicode "xn--espaol-zwa.com" |> equal "español.com"
       
       testCase "fileURLToPath" <| fun _ ->
           if isPosix then 
-            Node.Url.Static.fileURLToPath "file:///你好.txt" = "/你好.txt " |> equal true
+            Node.Url.Static.fileURLToPath "file:///你好.txt" |> equal "/你好.txt"
           else
-            Node.Url.Static.fileURLToPath "file:///C:/path/" = """C:/path/""" |> equal true
+            Node.Url.Static.fileURLToPath "file:///C:/path/" |> equal """C:\path\"""
 
       testCase "format" <| fun _ ->
           let url : Node.Url.URL = URL.Create("https://a:b@測試?abc#foo")
@@ -202,15 +202,15 @@ let tests : Test =
     testList "URLSearchParams" [
       testCase "get" <| fun _ ->
           let url : Node.Url.URL = URL.Create("https://example.org/?abc=123")
-          url.searchParams.get "abc" = Some "123" |> equal true  
+          url.searchParams.get "abc" = Some "123" |> equal true
 
       testCase "get" <| fun _ ->
           let url : Node.Url.URL = URL.Create("https://example.org/?abc=123")
-          url.searchParams.get "123" = None |> equal true  
+          url.searchParams.get "123" = None |> equal true
 
       testCase "getAll" <| fun _ ->
           let url : Node.Url.URL = URL.Create("https://example.org/?abc=123")
-          url.searchParams.getAll "abc" |> Seq.head = "123" |> equal true  
+          url.searchParams.getAll "abc" |> Seq.head = "123" |> equal true
 
       testCase "has" <| fun _ ->
           let url : Node.Url.URL = URL.Create("https://example.org/?abc=123")
@@ -239,20 +239,20 @@ let tests : Test =
       testCase "append" <| fun _ ->
           let url : Node.Url.URL = URL.Create("https://example.org/?abc=123")
           url.searchParams.append("abc","xyz")
-          url.href = "https://example.org/?abc=123&abc=xyz" |> equal true  
+          url.href = "https://example.org/?abc=123&abc=xyz" |> equal true
 
       testCase "delete" <| fun _ ->
           let url : Node.Url.URL = URL.Create("https://example.org/?abc=123")
           url.searchParams.delete "abc"
           url.searchParams.set("a","b")
-          url.href = "https://example.org/?a=b" |> equal true  
+          url.href = "https://example.org/?a=b" |> equal true
 
       testCase "new" <| fun _ ->
-          let url : Node.Url.URL = URL.Create("https://example.org/?a=b")          
+          let url : Node.Url.URL = URL.Create("https://example.org/?a=b")
           let newSearchParams  : Node.Url.URLSearchParams = Node.Api.URLSearchParams.Create(url.searchParams)
           newSearchParams.append("a","c")
           (url.href = "https://example.org/?a=b" 
-            && newSearchParams.toString() = "a=b&a=c") |> equal true  
+            && newSearchParams.toString() = "a=b&a=c") |> equal true
 
     ]
 
