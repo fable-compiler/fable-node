@@ -109,7 +109,7 @@ type [<AllowNullLiteral>] AgentStatic =
 
 
 type [<AllowNullLiteral>] STATUS_CODESType =
-    [<Emit("$0[$1]{{=$2}}")>] abstract Item: errorCode: int -> string with get, set
+    // [<Emit("$0[$1]{{=$2}}")>] abstract Item: errorCode: int -> string with get, set
     [<Emit("$0[$1]{{=$2}}")>] abstract Item: errorCode: string -> string with get, set
 
 type [<StringEnum>] Methods =
