@@ -7,11 +7,13 @@
     "test": "mocha build/tests -t 10000"
   },
   "dependencies": {
-    "@babel/preset-env": "^7.5.4",
-    "fable-compiler": "^2.2.0-beta-015",
     "fable-compiler-js": "^1.0.4",
-    "fable-publish-utils": "^1.0.5",
-    "fable-splitter": "^2.1.5",
     "mocha": "^6.2.0"
+  },
+  "devDependencies": {
+    "fable-compiler": "^2.3.12",
+    "@babel/preset-env": "^7.5.4",
+    "fable-publish-utils": "^1.0.5",
+    "fable-splitter": "^2.1.5"
   }
 }
