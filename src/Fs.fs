@@ -54,7 +54,7 @@ type [<AllowNullLiteral>] ReadStreamOptions =
     abstract ``end``: int option with get, set
 
 type [<AllowNullLiteral>] ReadStream<'a> =
-    inherit Readable<Buffer>
+    inherit Readable<'a>
     abstract bytesRead: float with get, set
     abstract path: 'a with get, set
     abstract close: unit -> unit
@@ -73,7 +73,7 @@ type [<AllowNullLiteral>] WriteStreamOptions =
     abstract start: int option with get, set
 
 type [<AllowNullLiteral>] WriteStream<'a> =
-    inherit Writable<Buffer>
+    inherit Writable<'a>
     abstract bytesWritten: float with get, set
     abstract path: 'a with get, set
     abstract close: unit -> unit
