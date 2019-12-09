@@ -1,3 +1,7 @@
+### 1.0.2
+
+* Minor streams fix #20 @ncave
+
 ### 1.0.1
 
 * added Cluster

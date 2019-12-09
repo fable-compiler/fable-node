@@ -20,10 +20,10 @@ If you use NuGet `<PackageReference />`:
 dotnet add package Fable.Node
 ```
 
-## Developement
+## Development
 
-- Tests: `npm tests` 
-- Publish: `npm run build Publish` 
+- Tests: `npm test` 
+- Publish: `npm run build publish` 
 
 ## Ongoing process
 

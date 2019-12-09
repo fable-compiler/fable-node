@@ -35,7 +35,7 @@ let tests : Test =
         if not isPosix then testPassed()
         else
           path.posix.basename "/tmp/index.html"
-            |> equal "index.htdml"                
+            |> equal "index.html"                
     ]
 
     testList "path.delimiter" [
