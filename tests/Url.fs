@@ -170,7 +170,7 @@ let tests : Test =
           if isPosix then 
             Node.Url.Static.fileURLToPath "file:///你好.txt" |> equal "/你好.txt"
           else
-            Node.Url.Static.fileURLToPath "file:///C:/path/" |> equal """C:/path/"""
+            Node.Url.Static.fileURLToPath "file:///C:/path/" |> equal """C:\path\"""
 
       testCase "format" <| fun _ ->
           let url : Node.Url.URL = URL.Create("https://a:b@測試?abc#foo")
