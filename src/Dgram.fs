@@ -57,10 +57,3 @@ type IExports =
     abstract createSocket: ``type``: string * ?callback: (unit -> unit) -> Dgram.Socket
     abstract createSocket: options: CreateSocketOptions * ?callback: (unit -> unit) -> Dgram.Socket
 
-
-
-
-
-
-
-
