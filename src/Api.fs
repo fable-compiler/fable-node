@@ -76,3 +76,6 @@ let TraceEVents: TraceEvents.IExports = jsNative
 
 [<Import("*", "path")>]
 let path: Path.IExports = jsNative
+
+[<Import("*", "dgram")>]
+let dgram: Dgram.IExports = jsNative
