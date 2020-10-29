@@ -29,6 +29,7 @@
     <Compile Include="TraceEvents.fs" />
     <Compile Include="Cluster.fs" />
     <Compile Include="Dgram.fs" />
+    <Compile Include="WorkerThreads.fs" />
     <Compile Include="Api.fs" />
   </ItemGroup>
   <ItemGroup>

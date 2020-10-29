@@ -79,3 +79,6 @@ let path: Path.IExports = jsNative
 
 [<Import("*", "dgram")>]
 let dgram: Dgram.IExports = jsNative
+
+[<Import("*", "worker_threads")>]
+let workerThreds: WorkerThreads.IExports = jsNative
