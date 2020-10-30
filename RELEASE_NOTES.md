@@ -1,3 +1,7 @@
+### 1.2.0
+
+* Add worker_threads module @AngelMunoz
+
 ### 1.1.0
 
 * Add dgram module @AngelMunoz
