@@ -1,5 +1,6 @@
 {
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "fable build.fsx --run",
     "sample-cluster": "fable-splitter samples/cluster -o build/cluster --commonjs --run --w",
