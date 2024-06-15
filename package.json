@@ -2,7 +2,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "fable build.fsx --run",
+    "build": "dotnet fsi build.fsx publish",
     "sample-cluster": "fable-splitter samples/cluster -o build/cluster --commonjs --run --w",
     "pretest": "fable-splitter tests/Tests.fsproj -o build/tests --commonjs",
     "test": "mocha build/tests -t 10000"

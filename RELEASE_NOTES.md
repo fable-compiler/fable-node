@@ -1,3 +1,7 @@
+### 1.3.0
+
+* Add `Util.TextEncoder` (by @MangelMaxime)
+
 ### 1.2.0
 
 * Add worker_threads module @AngelMunoz
