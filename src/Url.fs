@@ -25,6 +25,10 @@ type [<AllowNullLiteral>] URLSearchParams =
     abstract Create: input:unit -> URLSearchParams
     [<Emit("new $0($1...)")>] 
     abstract Create: input:URLSearchParams -> URLSearchParams
+    [<Emit("new $0($1...)")>] 
+    abstract Create: input:obj -> URLSearchParams
+    [<Emit("new $0($1...)")>] 
+    abstract Create: input:'T seq -> URLSearchParams
     abstract append: string * string -> unit
     abstract delete: string -> unit
     abstract get: string -> string option
