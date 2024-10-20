@@ -1,3 +1,7 @@
+### 1.4.0
+
+* Fix casing of `NetworkFamily` enum values (by @MangelMaxime)
+
 ### 1.3.0
 
 * Add `Util.TextEncoder` (by @MangelMaxime)

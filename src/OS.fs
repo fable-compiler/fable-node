@@ -18,7 +18,7 @@ type [<AllowNullLiteral>] CpuInfo =
     abstract speed: float
     abstract times: CpuTimes 
 
-[<StringEnum>]
+[<StringEnum(CaseRules.None)>]
 type NetworkFamily = 
     | IPv4 
     | IPv6 
