@@ -2,8 +2,8 @@
   <Import Project="Meta.props" />
   <PropertyGroup>
     <PackageId>Fable.Node</PackageId>
-    <Version>1.4.0</Version>
-    <PackageVersion>1.4.0</PackageVersion>
+    <Version>1.5.0</Version>
+    <PackageVersion>1.5.0</PackageVersion>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
@@ -33,6 +33,7 @@
     <Compile Include="Api.fs" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="5.0.2" />
     <PackageReference Include="Fable.Core" Version="3.1.2" />
   </ItemGroup>
 </Project>

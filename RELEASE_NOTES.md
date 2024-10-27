@@ -1,3 +1,7 @@
+### 1.5.0
+
+* Lower FSharp.Core version to 5.0.2 (by @MangelMaxime)
+
 ### 1.4.0
 
 * Fix casing of `NetworkFamily` enum values (by @MangelMaxime)
