@@ -5,6 +5,7 @@ open Fable.Core
 open Node.Base
 open Node.Stream
 open Node.Events
+open Node.Buffer
 
 type [<AllowNullLiteral>] Stats =
     abstract dev: float with get, set

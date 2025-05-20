@@ -71,5 +71,4 @@ module Static =
     let domainToASCII: string -> string = importMember  "url"
     let domainToUnicode: string -> string = importMember  "url"
     let fileURLToPath: string -> string = importMember  "url"
-    let fileURLToPathFromURL: URL -> string = importMember  "url"
     let pathToFileURL: string -> URL = importMember  "url"

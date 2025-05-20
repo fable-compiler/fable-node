@@ -39,23 +39,28 @@ let tests : Test =
     testList "host" [
       testCase "get" <| fun _ ->
           let url : Node.Url.URL = URL.Create("https://example.org:81/foo")
-          url.host = "example.org:81" |> equal true
+          url.host |> equal "example.org:81"
       
       testCase "set" <| fun _ ->
           let url : Node.Url.URL = URL.Create("https://example.org:81/foo")
           url.host <- "example.com:82"
-          url.href = "https://example.com:82/foo" |> equal true
+          url.href |> equal "https://example.com:82/foo"
     ]
 
     testList "hostname" [
       testCase "get" <| fun _ ->
           let url : Node.Url.URL = URL.Create("https://example.org:81/foo")
-          url.hostname = "example.org" |> equal true
+          url.hostname |> equal "example.org"
       
-      testCase "set" <| fun _ ->
+      testCase "invalid set ignored" <| fun _ ->
           let url : Node.Url.URL = URL.Create("https://example.org:81/foo")
           url.hostname <- "example.com:82"
-          url.href = "https://example.com:81/foo" |> equal true
+          url.href |> equal "https://example.org:81/foo"
+
+      testCase "set" <| fun _ ->
+          let url : Node.Url.URL = URL.Create("https://example.org:81/foo")
+          url.hostname <- "example.com"
+          url.href |> equal "https://example.com:81/foo"
     ]
 
     testList "href" [

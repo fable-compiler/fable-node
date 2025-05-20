@@ -70,32 +70,31 @@ let tests : Test =
         totalLength = bufA.length |> equal true
     ]
 
-    testList "Buffer.fron" [
-      testCase "do it" <| fun _ ->
+    testList "Buffer.from" [
+      testCase "check length" <| fun _ ->
         let buf = Buffer.from([|0x62; 0x75; 0x66; 0x66; 0x65; 0x72|])
         buf.length = 6 |> equal true
 
-      testCase "do it" <| fun _ ->
+      testCase "set value on return value" <| fun _ ->
         let arr = [|5000;4000|]
         let buf = Buffer.from arr.buffer
         arr.[1] <- 6000
         testPassed()
 
-      testCase "do it" <| fun _ ->
+      testCase "with byteOffset" <| fun _ ->
         let ab = ArrayBuffer.Create(10)
         let buf = Buffer.from(ab, 0, 2)
         buf.length = 2 |> equal true
 
-      testCase "do it" <| fun _ ->
+      testCase "buffer as array" <| fun _ ->
         // basically a Buffer is an UInt8/byte array
-        let buf1 : byte [] = unbox (Buffer.from "buffer")
+        let buf1 = Buffer.from "buffer"
         let buf2 = Buffer.from buf1
+        buf1[0] <- 0x61uy
+        buf1.toString() |> equal "auffer" 
+        buf2.toString() |> equal "buffer" 
 
-        buf1.[0] <- !!0x61
-        ((string buf1) = "auffer"
-          && buf2.toString() = "buffer") |> equal true
-
-      testCase "do it" <| fun _ ->
+      testCase "test encoding" <| fun _ ->
         let buf1 = Buffer.from "this is a tést"
         let buf2 = Buffer.from("7468697320697320612074c3a97374", Encoding.Hex)
         (
@@ -117,11 +116,12 @@ let tests : Test =
 
       testCase "buf[index]" <| fun _ ->
         let str = "Node.js"
-        let buf : byte []= unbox (Buffer.allocUnsafe str.Length)
+        let buf = Buffer.allocUnsafe str.Length
         for i in 0..(str.Length - 1) do
           buf.[i] <- byte (str.Chars i)
-
-        (string buf) = str |> equal true
+        let asString = buf.toString()
+        asString.Length |> equal str.Length
+        asString |> equal str
 
       testCase "buf.buffer" <| fun _ ->
         let arrayBuffer = ArrayBuffer.Create 16

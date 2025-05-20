@@ -48,7 +48,7 @@ let tests : Test =
             )
           JS.console.log (list.getEntriesByName "test1")
           observer.disconnect()        
-          list.getEntries() |> Seq.length |> equal 1
+          list.getEntries() |> Seq.length |> equal 3
         )
         let options = jsOptions<PerformanceObserverOptions>( fun opt -> 
           opt.entryTypes <- [|"mark"|]

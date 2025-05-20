@@ -2,17 +2,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "dotnet fsi build.fsx publish",
-    "sample-cluster": "fable-splitter samples/cluster -o build/cluster --commonjs --run --w",
-    "pretest": "fable-splitter tests/Tests.fsproj -o build/tests --commonjs",
-    "test": "mocha build/tests -t 10000"
+    "postinstall": "dotnet tool restore",
+    "build": "dotnet fable src -o build",
+    "pretest": "dotnet fable tests -o build",
+    "test": "mocha build -t 10000",
+    "publish": "dotnet fsi build.fsx Publish"
   },
   "devDependencies": {
-    "fable-compiler": "^2.4.11",
-    "fable-compiler-js": "^1.2.0",
-    "fable-publish-utils": "^1.1.1",
-    "fable-splitter": "^2.1.11",
-    "mocha": "^6.2.2",
-    "@babel/plugin-transform-modules-commonjs": "7.10.4"
+    "mocha": "^10.0.0",
+    "fable-publish-utils": "^2.2.0"
   }
 }

@@ -44,6 +44,8 @@ type Buffer =
     abstract fill: value: string * ?offset: int * ?``end``: int * ?encoding: BufferEncoding-> Buffer
     abstract fill: value: Buffer * ?offset: int * ?``end``: int * ?encoding: BufferEncoding-> Buffer
     abstract fill: value: int * ?offset: int * ?``end``: int * ?encoding: BufferEncoding-> Buffer
+    [<Emit("$0[$1]{{=$2}}")>]
+    abstract Item: index: int -> byte with get, set
     abstract includes: value: string * ?byteOffset: int * ?encoding: BufferEncoding -> bool
     abstract includes: value: Buffer * ?byteOffset: int * ?encoding: BufferEncoding -> bool
     abstract includes: value: int * ?byteOffset: int * ?encoding: BufferEncoding -> bool
