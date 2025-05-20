@@ -1,3 +1,7 @@
+### 1.6.0
+
+* FS module should use Node Buffer and not Sytem.Buffer (@PierreYvesR)
+
 ### 1.5.0
 
 * Lower FSharp.Core version to 5.0.2 (by @MangelMaxime)
